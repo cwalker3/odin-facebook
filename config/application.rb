@@ -18,5 +18,16 @@ module OdinFacebook
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.generators do |g|
+      g.testframework(
+        :rspec,
+        fixture: false,
+        view_spec: false,
+        helper_spec: false,
+        routing_spec: false,
+        request_spec: false,
+        controller_spec: false
+      )
+    end
   end
 end

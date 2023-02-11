@@ -25,49 +25,50 @@ RSpec.feature "Registrations", type: :feature do
     it 'returns an error' do
       fill_in 'First Name', with: ''
       click_on 'Sign up'
-      expect(page).to have_content('First Name can\'t be blank')
+      expect(page).to have_content('First name can\'t be blank')
     end
   end
 
   context 'when last name is blank' do
     it 'returns an error' do
+      fill_in 'Last Name', with: ''
       click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
-    end
-  end
-
-  context 'when birthday is blank' do
-    it 'returns an error' do
-      click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
+      expect(page).to have_content('Last name can\'t be blank')
     end
   end
 
   context 'when age would be less than 13' do
     it 'returns an error' do
+      time = Time.now - 12.years - 364.days
+      select time.year.to_s, from: 'user_birth_date_1i'
+      select time.strftime('%B'), from: 'user_birth_date_2i'
+      select time.day.to_s, from: 'user_birth_date_3i'
       click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
-    end
-  end
-
-  context 'when birthday is in the future' do
-    it 'returns an error' do
-      click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
+      expect(page).to have_content('You must be at least 13 years old to sign up')
     end
   end
 
   context 'when email is blank' do
     it 'returns an error' do
+      fill_in 'Email', with: ''
       click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
+      expect(page).to have_content('Email can\'t be blank')
     end
   end
 
   context 'when password is blank' do
     it 'returns an error' do
+      fill_in 'Password', with: ''
       click_on 'Sign up'
-      expect(page).to have_content('Sign Out')
+      expect(page).to have_content('Password can\'t be blank')
+    end
+  end
+
+  context 'when password is too short' do
+    it 'returns an error' do
+      fill_in 'Password', with: INVALID_PASSWORD
+      click_on 'Sign up'
+      expect(page).to have_content('Password is too short')
     end
   end
 end

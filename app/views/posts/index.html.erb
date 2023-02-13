@@ -1,9 +1,17 @@
-<h1>Friend Requests</h1>
-<% @friend_requests.each do |requestor| %>
-  <%= requestor.name %>
-  <%= form_with url: friendship_path do |form| %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.hidden_field :friend_id, value: requestor.id %>
-    <%= form.submit 'Accept Friend Request' %>
-  <% end %>
+<% @posts.each do |post| %>
+  <div class="post">
+    <div class="postAuthor">
+      <b>User:</b> <%= link_to post.user.name, user_path(post.user) %>
+    </div>
+    <div class="post_body">
+      <b>Post:</b> <%= post.body%>
+    </div>
+    <div class="likes">
+      <b>Likes:</b>
+    </div>
+    <div class="comments">
+      <b>Comments:</b>
+    </div>
+    <br>
+  </div>
 <% end %>

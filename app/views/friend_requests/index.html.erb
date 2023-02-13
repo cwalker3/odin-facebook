@@ -1,0 +1,9 @@
+<h1>Friend Requests</h1>
+<% @friend_requests.each do |requestor| %>
+  <%= requestor.name %>
+  <%= form_with url: friendship_index_path do |form| %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :friend_id, value: requestor.id %>
+    <%= form.submit 'Accept Friend Request' %>
+  <% end %>
+<% end %>

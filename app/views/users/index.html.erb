@@ -1,0 +1,18 @@
+<h1> Users </h1>
+<% @users.each do |user| %>
+  <% next if user == current_user %>
+
+  Name: <%= user.name %> <br>
+  <% if user.has_request_from?(current_user) %>
+    <button type="button" disabled="true">Friend Request Pending</button><br>
+  <% elsif user.friends_with?(current_user) %>
+    <button type="button" disabled="true">Friends</button><br>
+  <% else %>
+    <%= form_with url: friend_requests_path do |form| %>
+      <%= form.hidden_field :requestor_id, value: current_user.id %>
+      <%= form.hidden_field :user_id, value: user.id %>
+      <%= form.submit 'Send Friend Request' %>
+    <% end %>
+  <% end %>
+  <br>
+<% end %>

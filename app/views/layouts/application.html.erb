@@ -16,6 +16,13 @@
     <p class="alert"><%= alert %></p>
     <% if user_signed_in? %>
       <%= link_to 'Sign Out', destroy_user_session_path, data: { 'turbo-method': :delete } %>
+      <%= link_to 'Home' %>
+      <%= link_to 'Profile' %>
+      <%= link_to 'Users', users_path %>
+      <%= link_to "Notifications(#{current_user.requestors.count})", friend_requests_path %>
+    <% else %>
+      <%= link_to 'Sign In' %>
+      <%= link_to 'Sign Up' %>
     <% end %>
     <%= yield %>
   </body>

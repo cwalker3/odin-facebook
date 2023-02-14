@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users, only: [:index, :show]
-  resources :friendship, only: [:create]
+  resources :friendships, only: [:create, :index]
   resources :friend_requests, only: [:create, :index]
+  resources :likings, only: [:create]
+  resources :comments, only: [:create]
 end

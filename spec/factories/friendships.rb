@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :friendship do
-    user { nil }
-    friend_id { 1 }
+    requestor_id { 1 }
+    requestee_id { 1 }
+    status { "MyString" }
   end
 end

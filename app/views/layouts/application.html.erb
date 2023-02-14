@@ -17,7 +17,7 @@
         <%= link_to 'Home', root_path %>
         <%= link_to 'Profile' %>
         <%= link_to 'Users', users_path %>
-        <%= link_to "Notifications(#{current_user.requestors.count})", friend_requests_path %>
+        <%= link_to "Notifications(#{current_user.requestors.count})", '/friend_requests' %>
       <% else %>
         <%= link_to 'Sign In' %>
         <%= link_to 'Sign Up' %>

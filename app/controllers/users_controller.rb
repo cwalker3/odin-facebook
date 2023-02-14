@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
-    @users = User.all.includes(:friends, :friend_requests)
+    @users = User.all
+    @requestees = current_user.requestees.to_a
+    @friends = current_user.friends
   end
 
   def show

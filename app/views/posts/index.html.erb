@@ -25,13 +25,25 @@
     </div>
     <div class="comments">
       <b>Comments:</b>
+      <ul>
       <% post.comments.each do |comment| %>
-        <div class="comment">
-          <b>User:</b> <%= comment.user.name %>
-          <b>Comment:</b> <%= comment.body %>
-          <b>Likes:</b> <%= comment.likes.size %>
-        <% end %>
+        <li>
+          <div class="comment">
+            <b>User:</b> <%= comment.user.name %>
+            <b>Comment:</b> <%= comment.body %>
+            <b>Likes:</b> <%= comment.likes.size %>
+            <% unless comment.likes.include?(current_user) %>
+              <%= form_with model: @liking do |form| %>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+                <%= form.hidden_field :likeable_id, value: comment.id %>
+                <%= form.hidden_field :likeable_type, value: 'Comment'%>
+                <%= form.submit "Like" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </li>
         </div>
+      </ul>
     </div>
     <br><br><br>
   </div>

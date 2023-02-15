@@ -1,0 +1,12 @@
+<%= form_with model: post do |form| %>
+  <!-- blank label> -->
+  <%= form.label :body do %>
+    <%= '' %>
+  <% end %>
+  <%= form.text_area :body %>
+  <%= form.hidden_field :user_id, value: current_user.id%>
+  <div>
+    <%= form.submit 'Post' %>
+  </div>
+  <br>
+<% end %>

@@ -1,12 +1,5 @@
-<%= form_with model: @post do |form| %>
-  <%= form.label :body, 'New Post:' %>
-  <%= form.text_field :body %>
-  <%= form.hidden_field :user_id, value: current_user.id%>
-  <div>
-    <%= form.submit 'Post' %>
-  </div>
-  <br>
-<% end %>
+<h3>New post:</h3>
+<%= render partial: 'post_form', locals: { post: @post }%>
 
 <% @posts.each do |post| %>
   <div class="post">
@@ -19,9 +12,19 @@
     <div class="likes">
       <b>Likes:</b> <%= post.likes.size %>
     </div>
+    <div class="comment_form">
+      <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id }%>
+    </div>
     <div class="comments">
       <b>Comments:</b>
+      <% post.comments.each do |comment| %>
+        <div class="comment">
+          <b>User:</b> <%= comment.user.name %>
+          <b>Comment:</b> <%= post.body %>
+          <b>Likes:</b> <%= comment.likes.size %>
+        <% end %>
+        </div>
     </div>
-    <br>
+    <br><br><br>
   </div>
 <% end %>

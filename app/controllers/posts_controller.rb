@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
     @post = Post.new
+    @comment = Comment.new
     @posts = Post.posts_from(User.user_and_friends_ids(current_user))
   end
 

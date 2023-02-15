@@ -5,8 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  after_save :delete_friend_request
-
   validates :first_name, :last_name, :birth_date, presence: true
   validate :is_13_or_older
 

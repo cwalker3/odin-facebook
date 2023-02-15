@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @comment = Comment.new
+    @liking = Liking.new
+
     @posts = Post.posts_from(User.user_and_friends_ids(current_user))
   end
 

@@ -11,6 +11,14 @@
     </div>
     <div class="likes">
       <b>Likes:</b> <%= post.likes.size %>
+      <% unless post.likes.include?(current_user) %>
+        <%= form_with model: @liking do |form| %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.hidden_field :likeable_id, value: post.id %>
+          <%= form.hidden_field :likeable_type, value: 'Post'%>
+          <%= form.submit "Like" %>
+        <% end %>
+      <% end %>
     </div>
     <div class="comment_form">
       <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id }%>

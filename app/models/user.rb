@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :requestors, through: :friend_requests
 
   def friends
-    friend1s.to_a.concat(friend2s.to_a)
+    friend1s.to_a + (friend2s.to_a)
   end
 
   def name
@@ -37,15 +37,11 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  private
-
-  def friend_ids
-    ids = []
-    friendships.where(status: 'accepted').each do |friendship|
-      ids << friendship.requestor_id == id ? friendship.requestee_id : friendship.requestor_id
-    end
-    ids
+  def self.user_and_friends_ids(user)
+    user.friends.pluck(:id) << user.id
   end
+
+  private
 
   def is_13_or_older
     if user_age < 13
@@ -57,9 +53,5 @@ class User < ApplicationRecord
     age = Date.today.year - birth_date.year
     age -= 1 if Date.today < birth_date + age.years
     age
-  end
-
-  def delete_friend_request
-    FriendRequest.delete(requestee_id: :friend1_id, requestor_id: :friend2_id)
   end
 end

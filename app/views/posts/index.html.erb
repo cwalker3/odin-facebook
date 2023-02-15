@@ -1,3 +1,13 @@
+<%= form_with model: @post do |form| %>
+  <%= form.label :body, 'New Post:' %>
+  <%= form.text_field :body %>
+  <%= form.hidden_field :user_id, value: current_user.id%>
+  <div>
+    <%= form.submit 'Post' %>
+  </div>
+  <br>
+<% end %>
+
 <% @posts.each do |post| %>
   <div class="post">
     <div class="postAuthor">
@@ -7,7 +17,7 @@
       <b>Post:</b> <%= post.body%>
     </div>
     <div class="likes">
-      <b>Likes:</b> <%= post.likes.count %>
+      <b>Likes:</b> <%= post.likes.size %>
     </div>
     <div class="comments">
       <b>Comments:</b>

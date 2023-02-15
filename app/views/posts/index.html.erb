@@ -20,7 +20,7 @@
       <% post.comments.each do |comment| %>
         <div class="comment">
           <b>User:</b> <%= comment.user.name %>
-          <b>Comment:</b> <%= post.body %>
+          <b>Comment:</b> <%= comment.body %>
           <b>Likes:</b> <%= comment.likes.size %>
         <% end %>
         </div>

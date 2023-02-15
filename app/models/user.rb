@@ -13,11 +13,11 @@ class User < ApplicationRecord
   has_many :likings, dependent: :destroy
   has_many :liked_posts, through: :likings, source: :post
   has_many :friendships, ->(user) { unscope(where: :user_id).where("friend1_id = ? OR friend2_id = ?", user.id, user.id) }, dependent: :destroy
-  has_many :friend1s, ->(user) { where.not("friendships.friend1_id = ?", user.id) }, through: :friendships
-  has_many :friend2s, ->(user) { where.not("friendships.friend2_id = ?", user.id) }, through: :friendships
-  has_many :friend_requests, ->(user) { unscope(where: :user_id).where("requestor_id = ? OR requestee_id = ?", user.id, user.id) }, dependent: :destroy
-  has_many :requestees, through: :friend_requests
-  has_many :requestors, through: :friend_requests
+  has_many :friend1s, ->(user) { where.not("friend1_id = ?", user.id) }, through: :friendships
+  has_many :friend2s, ->(user) { where.not("friend2_id = ?", user.id) }, through: :friendships
+  has_many :friend_requests, ->(user) { unscope(where: :user_id).where("requestee_id = ? OR requestor_id = ?", user.id, user.id) }, dependent: :destroy
+  has_many :requestees, ->(user) { where.not("requestee_id = ?", user.id) }, through: :friend_requests
+  has_many :requestors, ->(user) { where.not("requestor_id = ?", user.id) }, through: :friend_requests
 
   def friends
     friend1s.to_a + (friend2s.to_a)

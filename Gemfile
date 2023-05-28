@@ -43,10 +43,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 gem 'devise'
 
@@ -76,3 +76,15 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'gravtastic'
+gem 'normalize-rails'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+
+gem "dockerfile-rails", ">= 1.0", :group => :development
+
+gem "redis", "~> 5.0"
+gem "active_storage_validations"
+
+gem "aws-sdk-s3", require: false

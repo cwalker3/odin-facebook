@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "profile" do %>
+  <%= form_with model: @profile do |form| %>
+    <div class="field">
+      <%= form.label :avatar, 'Profile picture' %> <br>
+      <%= form.file_field :avatar, accept: 'image/png, image/jpeg, image/jpg' %>
+    </div>
+    <div class="field">
+      <%= form.label :first_name %> <br>
+      <%= form.text_field :first_name%>
+    </div>
+    <div class="field">
+      <%= form.label :last_name %> <br>
+      <%= form.text_field :last_name%>
+    </div>
+    <div class="field">
+      <%= form.label :location %> <br>
+      <%= form.text_field :location %>
+    </div>
+    <div class="field">
+      <%= form.label :gender %> <br>
+      <%= form.text_field :gender %>
+    </div>
+    <div class="submit">
+      <%= form.submit 'Update Profile' %>
+    </div>
+  <% end %>
+<% end %>

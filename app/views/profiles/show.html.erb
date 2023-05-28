@@ -1,0 +1,34 @@
+<div class="profile-show">
+  <div class="profile-info">
+    <%= turbo_frame_tag "profile" do %>
+      <div class="profile-img">
+        <%= image_tag @profile.large_avatar %>
+        </div>
+      <div class="name">
+        <%= @profile.name %>
+      </div>
+      <div class="birth-date">
+        <b>Birthday:</b>
+        <%= @profile.birth_date %>
+      </div>
+      <div class="location">
+        <b>Location:</b>
+        <%= @profile.location %>
+      </div>
+      <div class="gender">
+        <b>Gender</b>
+        <%= @profile.gender %>
+      </div>
+      <div class="edit">
+        <% if @profile.user == current_user %>
+          <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+        <% end %>
+      </div>
+  </div>
+  <% end %>
+  <div class="posts">
+    <%= render partial: "posts/post", collection: @posts %>
+  </div>
+
+</div>
+

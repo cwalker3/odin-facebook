@@ -1,0 +1,13 @@
+@import 'mixins/mixins';
+
+.index-posts {
+  .post {
+    margin-top: 16px;
+  }
+}
+
+@include screensUnderContentSize {
+  .index-posts {
+    margin: 0 8px;
+  }
+}

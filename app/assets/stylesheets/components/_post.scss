@@ -1,0 +1,115 @@
+@import 'mixins/mixins.scss';
+@import 'config/variables.scss';
+
+.post {
+  @include boxStyles();
+  padding: 16px;
+  display: block;
+
+  .post-top {
+    display: flex;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .post-info {
+      display: inline;
+
+      a {
+        text-decoration: none;
+        color: var(--font-color-primary);
+        font-weight: bold;
+      }
+
+      .posted-at {
+        font-size: 0.8rem;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  hr {
+    display: block;
+    color: var(--bg-color-primary);
+    margin: 8px 0;
+  }
+
+  .post-img {
+    display: block;
+    margin: 8px auto;
+    max-width: 95%;
+    border-radius: 10px;
+  }
+
+  .post-body {
+    font-size: 1.2rem;
+  }
+
+  .likes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .like-button {
+      max-width: 32px;
+      margin-right: 4px;
+    }
+  }
+
+  .comment-form {
+    margin-bottom: 8px;
+
+    form {
+      display: flex;
+      align-items: center;
+
+      textarea {
+        flex-grow: 1;
+        height: 32px;
+      }
+
+      input {
+      }
+    }
+  }
+
+  .comments {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+
+    .comment {
+      display: grid;
+      gap: 4px;
+
+      .commenter {
+        font-weight: bold;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: center;
+
+        .like-button {
+          max-width: 24px;
+          margin-right: 4px;
+        }
+
+        .likes {
+          font-weight: bold;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@include screensUnderContentSize {
+  .post {
+    padding: 8px;
+  }
+}

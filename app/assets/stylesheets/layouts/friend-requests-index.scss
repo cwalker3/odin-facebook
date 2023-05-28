@@ -1,0 +1,39 @@
+@import 'mixins/mixins';
+
+.friend-requests {
+  display: grid;
+  gap: 16px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .friend-request {
+    background-color: var(--bg-color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+    @include boxStyles();
+
+    a {
+      font-weight: bold;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@include screensUnderContentSize {
+  .friend-requests {
+    margin-inline: 8px;
+
+    .friend-request {
+      padding: 8px;
+      flex-direction: column;
+    }
+  }
+}

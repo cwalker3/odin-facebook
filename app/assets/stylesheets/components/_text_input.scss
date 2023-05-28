@@ -1,0 +1,14 @@
+.text-input,
+input[type='text'],
+textarea,
+input[type='password'],
+input[type='email'],
+select {
+  border-radius: 15px;
+  background-color: var(--input-color);
+  border: none;
+  box-shadow: 0px 3px 15px rgba($color: #000000, $alpha: 0.1);
+  resize: none;
+  padding: 8px;
+  overflow: hidden;
+}

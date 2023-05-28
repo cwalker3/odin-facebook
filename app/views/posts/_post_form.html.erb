@@ -1,12 +1,13 @@
-<%= form_with model: post do |form| %>
-  <!-- blank label> -->
-  <%= form.label :body do %>
-    <%= '' %>
+<div class="post-form">
+  <%= form_with model: post do |form| %>
+    <%= form.label :image, class: 'img-label', tabindex: 0 do %>
+      <%= image_tag 'img-box.svg', alt: 'Image Upload', class: 'img-icon' %>
+    <% end %>
+    <img class="image-preview" src='' alt=''></img>
+    <%= form.label :body, 'Post Text', class: 'post-text-label' %>
+    <%= form.text_area :body, class: 'text-input', maxlength: 2000 %>
+    <%= form.file_field :image, accept: 'image/png, image/jpeg, image/jpg' %>
+    <%= form.hidden_field :user_id, value: current_user.id%>
+    <%= form.submit 'Post', class: 'submit-button' %>
   <% end %>
-  <%= form.text_area :body %>
-  <%= form.hidden_field :user_id, value: current_user.id%>
-  <div>
-    <%= form.submit 'Post' %>
-  </div>
-  <br>
-<% end %>
+</div>

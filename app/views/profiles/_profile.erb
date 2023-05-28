@@ -1,0 +1,17 @@
+<%= turbo_frame_tag profile, class: 'profile' do %>
+  <div class="wrapper">
+    <%= link_to image_tag(profile.small_avatar), profile_path(profile), data: {turbo_frame: "_top"} %>
+    <%= link_to profile.name, profile_path(profile), data: { turbo_frame: "_top" }, class: 'name' %>
+  </div>
+  <% if @requestees.include?(profile.user) %>
+    <button type="button" disabled="true">Friend Request Pending</button><br>
+  <% elsif @friends.include?(profile.user) %>
+    <button type="button" disabled="true">Friends</button><br>
+  <% else %>
+    <%= form_with url: '/friend_requests' do |form| %>
+      <%= form.hidden_field :requestor_id, value: current_user.id %>
+      <%= form.hidden_field :requestee_id, value: profile.user.id %>
+      <%= form.submit 'Send Friend Request' %>
+    <% end %>
+  <% end %>
+<% end %>

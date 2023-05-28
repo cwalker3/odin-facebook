@@ -1,0 +1,59 @@
+@import 'mixins/mixins.scss';
+
+.post-form {
+  @include boxStyles();
+  padding: 16px;
+
+  form {
+    display: grid;
+
+    .post-text-label {
+      display: none;
+    }
+
+    textarea {
+      height: 100px;
+      margin-bottom: 4px;
+    }
+
+    input[type='file'] {
+      display: none;
+    }
+
+    .img-label {
+      border: 1px solid white;
+      border-radius: 15px;
+      margin-bottom: 4px;
+
+      &:hover {
+        background-color: #1c1d1e;
+      }
+
+      &:hover .img-icon {
+        transform: scale(1.05);
+      }
+
+      .img-icon {
+        max-width: 50px;
+        @include hoverGrow;
+        display: block;
+        margin: auto;
+        margin-bottom: 4px;
+        transition: scale 0.1s ease-in-out;
+      }
+    }
+  }
+
+  .image-preview {
+    display: block;
+    margin: auto;
+    max-width: 95%;
+    border-radius: 10px;
+  }
+}
+
+@include screensUnderContentSize {
+  .post-form {
+    padding: 8px;
+  }
+}

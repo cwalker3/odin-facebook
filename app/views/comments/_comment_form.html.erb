@@ -1,12 +1,8 @@
 <%= form_with model: comment do |form| %>
   <!-- blank label> -->
-  <%= form.label :body do %>
-    <%= '' %>
-  <% end %>
-  <%= form.text_area :body %>
+  <%= form.label :body, 'Comment: ', for: "comment_on_#{post_id}" %>
+  <%= form.text_area :body, id: "comment_on_#{post_id}", class: 'text-input', required: true %>
   <%= form.hidden_field :user_id, value: current_user.id%>
   <%= form.hidden_field :post_id, value: post_id %>
-  <div>
-    <%= form.submit 'Comment' %>
-  </div>
+  <%= form.submit 'Submit', class: 'submit-button' %>
 <% end %>

@@ -1,0 +1,18 @@
+<li class="comment">
+  <%= link_to  "#{comment.user.profile.name}:", profile_path(comment.user.profile), class: 'commenter', data: { turbo_frame: "_top" }%>
+  <span class="comment-body"><%= comment.body %></span>
+  <div class="wrapper">
+    <% unless comment.likes.include?(current_user) %>
+      <%= form_with model: liking do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %><%= form.hidden_field :likeable_id, value: comment.id %>
+        <%= form.hidden_field :likeable_type, value: 'Comment'%>
+        <%= form.submit "Like", type: :image, src: image_path('like.svg'), class: 'like-button' %>
+      <% end %>
+    <% end %>
+     <span class='likes'>
+      <%= pluralize(comment.likes.count, 'Like') %>
+     </span>
+  </div>
+</li>
+
+

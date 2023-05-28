@@ -1,0 +1,18 @@
+.profile-show {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.profile-show .profile-info {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.profile-show .profile-info .profile-img img {
+  border-radius: 10px;
+}
+.profile-show .posts {
+  display: grid;
+  gap: 8px;
+}/*# sourceMappingURL=show-profile.css.map */

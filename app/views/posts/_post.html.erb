@@ -1,0 +1,36 @@
+<%= turbo_frame_tag post, class: 'post' do %>
+  <div class="post-top">
+    <div class="user-img">
+      <%= link_to image_tag(post.user.profile.small_avatar), profile_path(post.user.profile), data: { turbo_frame: "_top" }  %>
+    </div>
+    <div class="post-info">
+      <div><%= link_to post.user.profile.name, profile_path(post.user.profile), data: { turbo_frame: "_top" } %></div>
+      <div class="posted-at"><%= post.posted_at %></div>
+    </div>
+  </div>
+  <hr>
+  <% if post.image.attached? %>
+    <%= image_tag post.image.variant(:resized), class: "post-img"%>
+  <% end %>
+  <div class="post-body">
+    <%= post.body%>
+  </div>
+  <hr>
+  <div class="likes">
+    <% unless post.likes.include?(current_user) %>
+      <%= form_with model: @liking do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :likeable_id, value: post.id %>
+        <%= form.hidden_field :likeable_type, value: 'Post'%>
+        <%= form.submit "Like", type: :image, src: image_path('like.svg'), class: 'like-button' %>
+      <% end %>
+    <% end %>
+    <b><%= pluralize(post.likes.count, 'Like') %></b> 
+  </div>
+  <div class="comment-form">
+    <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id, } %>
+  </div>
+  <ul class="comments">
+      <%= render partial: "comments/comment", collection: post.comments, locals: { liking: @liking } %>
+  </ul>
+<% end %>

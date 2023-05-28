@@ -1,0 +1,21 @@
+.profile-show {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  .profile-info {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    .profile-img img {
+      border-radius: 10px;
+    }
+  }
+
+  .posts {
+    display: grid;
+    gap: 8px;
+  }
+}

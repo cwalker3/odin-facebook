@@ -1,0 +1,22 @@
+@import 'mixins/mixins';
+
+.sign-up {
+  display: grid;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  @include boxStyles;
+  padding: 16px;
+
+  form {
+    display: grid;
+    gap: 8px;
+  }
+}
+
+@include screensUnderContentSize {
+  .sign-up {
+    padding: 8px;
+    margin: 8px;
+  }
+}

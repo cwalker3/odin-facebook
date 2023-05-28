@@ -1,0 +1,22 @@
+@import 'mixins/mixins';
+
+.sign-in {
+  display: grid;
+  gap: 4px;
+  justify-content: center;
+  background-color: var(--bg-color-secondary);
+  padding: 16px;
+  @include boxStyles();
+
+  form {
+    display: grid;
+    gap: 4px;
+  }
+}
+
+@include screensUnderContentSize {
+  .sign-in {
+    margin-inline: 8px;
+    padding: 8px;
+  }
+}

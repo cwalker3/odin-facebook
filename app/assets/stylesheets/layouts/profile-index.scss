@@ -1,0 +1,17 @@
+@import 'mixins/mixins';
+
+.profiles-index {
+  display: grid;
+  gap: 16px;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+@include screensUnderContentSize {
+  .profiles-index {
+    padding: 8px;
+    margin-inline: 8px;
+  }
+}

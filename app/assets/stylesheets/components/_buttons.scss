@@ -1,0 +1,22 @@
+@import 'mixins/mixins';
+
+button,
+input[type='submit'] {
+  background: var(--btn-color);
+  border: none;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 6px;
+
+  &:hover {
+    background-color: var(--btn-color-hover);
+  }
+}
+
+.like-button {
+  @include hoverGrow();
+}
+
+button:disabled {
+  background-color: var(--bg-color-secondary);
+}

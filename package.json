@@ -1,0 +1,28 @@
+{
+  "name": "odin-facebook",
+  "version": "1.0.0",
+  "description": "This project is a Facebook Clone made using Ruby on Rails. It is part of [The Odin Project](theodinproject.com)'s curriculum. The project page can be found [here](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project#project-building-facebook).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cwalker3/odin-facebook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwalker3/odin-facebook/issues"
+  },
+  "homepage": "https://github.com/cwalker3/odin-facebook#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "prettier": "2.8.4"
+  }
+}

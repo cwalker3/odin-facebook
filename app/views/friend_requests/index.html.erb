@@ -1,9 +1,18 @@
-<h1>Friend Requests</h1>
-<% @requestors.each do |requestor| %>
-  <%= requestor.name %>
-  <%= form_with url: '/friendships' do |form| %>
-    <%= form.hidden_field :friend1_id, value: current_user.id %>
-    <%= form.hidden_field :friend2_id, value: requestor.id %>
-    <%= form.submit 'Accept Friend Request' %>
+<div class="friend-requests">
+  <h1>Friend Requests</h1>
+  <% if @requestors.empty? %>
+    You do not have any friend requests
+  <% else %>
+    <% @requestors.each do |requestor| %>
+      <div class="friend-request">
+        <%= link_to image_tag(requestor.profile.small_avatar), profile_path(requestor.profile) %>
+        <%= link_to requestor.profile.name, profile_path(requestor.profile) %>
+        <%= form_with url: '/friendships' do |form| %>
+          <%= form.hidden_field :friend1_id, value: current_user.id %>
+          <%= form.hidden_field :friend2_id, value: requestor.id %>
+          <%= form.submit 'Accept Friend Request' %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

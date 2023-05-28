@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :post do
-    body { "MyText" }
-    user { nil }
+    association :user
+    body { Faker::GreekPhilosophers.quote }
   end
 end

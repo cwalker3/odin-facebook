@@ -1,50 +1,8 @@
-<h3>New post:</h3>
-<%= render partial: 'post_form', locals: { post: @post }%>
+<div class="index-posts">
 
-<% @posts.each do |post| %>
-  <div class="post">
-    <div class="postAuthor">
-      <b>User:</b> <%= link_to post.user.name, user_path(post.user) %>
-    </div>
-    <div class="post_body">
-      <b>Post:</b> <%= post.body%>
-    </div>
-    <div class="likes">
-      <b>Likes:</b> <%= post.likes.size %>
-      <% unless post.likes.include?(current_user) %>
-        <%= form_with model: @liking do |form| %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.hidden_field :likeable_id, value: post.id %>
-          <%= form.hidden_field :likeable_type, value: 'Post'%>
-          <%= form.submit "Like" %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="comment_form">
-      <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id }%>
-    </div>
-    <div class="comments">
-      <b>Comments:</b>
-      <ul>
-      <% post.comments.each do |comment| %>
-        <li>
-          <div class="comment">
-            <b>User:</b> <%= comment.user.name %>
-            <b>Comment:</b> <%= comment.body %>
-            <b>Likes:</b> <%= comment.likes.size %>
-            <% unless comment.likes.include?(current_user) %>
-              <%= form_with model: @liking do |form| %>
-                <%= form.hidden_field :user_id, value: current_user.id %>
-                <%= form.hidden_field :likeable_id, value: comment.id %>
-                <%= form.hidden_field :likeable_type, value: 'Comment'%>
-                <%= form.submit "Like" %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </li>
-        </div>
-      </ul>
-    </div>
-    <br><br><br>
+  <%= render partial: 'post_form', locals: { post: @post }%>
+
+  <div class="posts">
+    <%= render partial: 'post', collection: @posts %>
   </div>
-<% end %>
+</div>

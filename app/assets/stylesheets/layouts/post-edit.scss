@@ -1,0 +1,15 @@
+.post-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    text-align: center;
+  }
+  .post-form {
+    width: 100%;
+    margin: 8px;
+  }
+}

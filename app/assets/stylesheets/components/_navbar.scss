@@ -32,15 +32,6 @@ header {
     &:focus ~ .nav-toggle-label {
       outline: 1px solid var(--font-color-primary);
     }
-
-    &:checked ~ nav {
-      transform: scale(1, 1);
-    }
-
-    &:checked ~ nav a {
-      opacity: 1;
-      transition: opacity 250ms ease-in-out 250ms;
-    }
   }
 
   .nav-toggle-label {
@@ -94,12 +85,16 @@ header {
 
       li {
         padding: 8px 32px;
+        transition: opacity 150ms ease-in-out;
+        opacity: 1;
 
         a {
           text-decoration: none;
-          opacity: 0;
-          transition: opacity 150ms ease-in-out;
           font-weight: bold;
+
+          &:hover {
+            color: #000;
+          }
         }
       }
     }
@@ -118,6 +113,8 @@ header {
       align-items: center;
 
       li {
+        opacity: 0;
+
         a {
           text-decoration: none;
           &:hover {

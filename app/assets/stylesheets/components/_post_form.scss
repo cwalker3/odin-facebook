@@ -44,11 +44,35 @@
     }
   }
 
-  .image-preview {
-    display: block;
-    margin: auto;
+  .preview-container {
+    position: relative;
     max-width: 95%;
-    border-radius: 10px;
+
+    .image-preview {
+      display: block;
+      margin: auto;
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .x-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 8px;
+      background-color: rgba($color: white, $alpha: 0.2);
+      border-radius: 15px;
+      opacity: 0;
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+
+    .x {
+      height: 50px;
+      @include hoverGrow;
+    }
   }
 }
 

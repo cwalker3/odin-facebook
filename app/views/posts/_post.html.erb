@@ -1,16 +1,22 @@
 <%= turbo_frame_tag post, class: 'post' do %>
   <div class="post-top">
-    <div class="user-img">
-      <%= link_to image_tag(post.user.profile.small_avatar), profile_path(post.user.profile), data: { turbo_frame: "_top" }  %>
+    <div class="left">
+      <div class="user-img">
+        <%= link_to image_tag(post.user.profile.small_avatar), profile_path(post.user.profile), data: { turbo_frame: "_top" }  %>
+      </div>
+      <div class="post-info">
+        <div><%= link_to post.user.profile.name, profile_path(post.user.profile), data: { turbo_frame: "_top" } %></div>
+        <div class="posted-at"><%= post.posted_at %></div>
+      </div>
     </div>
-    <div class="post-info">
-      <div><%= link_to post.user.profile.name, profile_path(post.user.profile), data: { turbo_frame: "_top" } %></div>
-      <div class="posted-at"><%= post.posted_at %></div>
+    <div class="kebab-container" data-controller='menu'>
+      <%= image_tag 'kebab.svg', class: "kebab", data: { action: 'click->menu#toggle' }  %>
+      <%= render partial: 'posts/post_menu', locals: { post: post } %>
     </div>
   </div>
   <hr>
   <% if post.image.attached? %>
-    <%= image_tag post.image.variant(:resized), class: "post-img"%>
+    <%= image_tag post.image.variant(:resized), class: "post-img" %>
   <% end %>
   <div class="post-body">
     <%= post.body%>

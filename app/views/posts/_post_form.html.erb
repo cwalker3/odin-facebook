@@ -1,12 +1,17 @@
-<div class="post-form">
+<div class="post-form", data-controller='preview'>
   <%= form_with model: post do |form| %>
-    <%= form.label :image, class: 'img-label', tabindex: 0 do %>
+    <%= form.label :image, class: 'img-label',  tabindex: 0 do %>
       <%= image_tag 'img-box.svg', alt: 'Image Upload', class: 'img-icon' %>
     <% end %>
-    <img class="image-preview" src='' alt=''></img>
+    <div class="preview-container">
+      <img class="image-preview" src='' alt='' data-preview-target='preview'></img>
+      <div class="x-container" data-preview-target='x' data-action='click->preview#remove'>
+        <%= image_tag 'x.png', alt: 'Remove Image', class: 'x' %>
+      </div>
+    </div>
     <%= form.label :body, 'Post Text', class: 'post-text-label' %>
     <%= form.text_area :body, class: 'text-input', maxlength: 2000 %>
-    <%= form.file_field :image, accept: 'image/png, image/jpeg, image/jpg' %>
+    <%= form.file_field :image, accept: 'image/png, image/jpeg, image/jpg', data: { action: 'change->preview#show', :'preview-target' => 'input' } %>
     <%= form.hidden_field :user_id, value: current_user.id%>
     <%= form.submit 'Post', class: 'submit-button' %>
   <% end %>

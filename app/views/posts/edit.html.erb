@@ -1,0 +1,28 @@
+<div class="post-edit">
+  <h1>Edit Post</h1>
+    <div class="post-form">
+      <%= form_with model: @post, url: post_path(@post), method: :patch, data: { controller: 'preview'} do |form| %>
+        <%= form.label :image, class: 'img-label',  tabindex: 0 do %>
+          <%= image_tag 'img-box.svg', alt: 'Image Upload', class: 'img-icon' %>
+        <% end %>
+        <div class="preview-container">
+          <% if @post.image.attached? %>
+            <%= image_tag @post.image.variant(:resized), class: 'image-preview', data: { :'preview-target' => 'preview' } %>
+            <div class="x-container visible" data-preview-target='x' data-action='click->preview#remove'>
+              <%= image_tag 'x.png', alt: 'Remove Image', class: 'x' %>
+            </div>
+          <% else %>
+            <img class="image-preview" src='' alt='' data-preview-target='preview'></img>
+              <div class="x-container" data-preview-target='x' data-action='click->preview#remove'>
+                <%= image_tag 'x.png', alt: 'Remove Image', class: 'x' %>
+              </div>
+          <% end %>
+        </div>
+        <%= form.label :body, 'Post Text', class: 'post-text-label' %>
+        <%= form.text_area :body, class: 'text-input', maxlength: 2000 %>
+        <%= form.file_field :image, accept: 'image/png, image/jpeg, image/jpg', data: { action: 'change->preview#show', :'preview-target' => 'input' } %>
+        <%= form.hidden_field :user_id, value: current_user.id%>
+        <%= form.submit 'Post', class: 'submit-button' %>
+      <% end %>
+  </div>
+</div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [:create, :index]
   resources :likings, only: [:create]
   resources :comments, only: [:create]
-  resources :posts, only: [:index, :create, :show]
+  resources :posts
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

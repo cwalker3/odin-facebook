@@ -9,24 +9,38 @@
   .post-top {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    img {
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-
-    .post-info {
-      display: inline;
-
-      a {
-        text-decoration: none;
-        color: var(--font-color-primary);
-        font-weight: bold;
+    .left {
+      display: flex;
+      align-items: center;
+      img {
+        border-radius: 50%;
+        margin-right: 8px;
       }
 
-      .posted-at {
-        font-size: 0.8rem;
-        margin-top: 8px;
+      .post-info {
+        display: inline;
+
+        a {
+          text-decoration: none;
+          color: var(--font-color-primary);
+          font-weight: bold;
+        }
+
+        .posted-at {
+          font-size: 0.8rem;
+          margin-top: 8px;
+        }
+      }
+    }
+
+    .kebab-container {
+      position: relative;
+
+      img {
+        height: 50px;
+        @include hoverGrow;
       }
     }
   }

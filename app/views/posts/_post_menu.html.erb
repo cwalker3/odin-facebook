@@ -1,0 +1,15 @@
+<div class="post-menu" data-menu-target='menu'>
+  <ul>
+    <li data-menu-target='text'>
+      <%= link_to 'View Post', post_path(post), data: { turbo_frame: '_top' } %>
+    </li>
+    <% if post.user.id == current_user.id %>
+      <li data-menu-target='text'>
+        <%= link_to 'Delete Post', post_path(post), data: { :'turbo-method' => :delete, :'turbo-confirm' => 'Delete post?' } %>
+      </li>
+      <li data-menu-target='text'>
+        <%= link_to 'Edit Post', edit_post_path(post.id), method: :patch %>
+      </li>
+    <% end%>
+  </ul>
+</div>

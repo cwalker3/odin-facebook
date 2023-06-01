@@ -23,7 +23,7 @@
   </div>
   <hr>
   <div class="likes">
-    <% unless post.likes.include?(current_user) %>
+    <% unless post.liked_by_user.include?(current_user) %>
       <%= form_with model: @liking do |form| %>
         <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.hidden_field :likeable_id, value: post.id %>
@@ -31,7 +31,7 @@
         <%= form.submit "Like", type: :image, src: image_path('like.svg'), class: 'like-button' %>
       <% end %>
     <% end %>
-    <b><%= pluralize(post.likes.count, 'Like') %></b> 
+    <b><%= pluralize(post.likes.length, 'Like') %></b> 
   </div>
   <div class="comment-form">
     <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id, } %>

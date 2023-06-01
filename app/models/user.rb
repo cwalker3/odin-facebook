@@ -7,8 +7,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likings, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likings, source: :post
+  has_many :liked_comments, through: :likings, source: :comment
   has_many :friendships, ->(user) { unscope(where: :user_id).where('friend1_id = ? OR friend2_id = ?', user.id, user.id) }, dependent: :destroy
   has_many :friend1s, ->(user) { where.not('friend1_id = ?', user.id) }, through: :friendships
   has_many :friend2s, ->(user) { where.not('friend2_id = ?', user.id) }, through: :friendships

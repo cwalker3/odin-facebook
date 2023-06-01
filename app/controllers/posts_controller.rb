@@ -3,9 +3,10 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @comment = Comment.new
-    @liking = Liking.new
+    @like = Like.new
 
-    @posts = Post.includes({image_attachment: :blob}, {user: {profile: {avatar_attachment: :blob}}, }, :likes, {comments: [:user, :likes]}).posts_from(User.user_and_friends_ids(current_user))
+    # @posts = Post.includes({image_attachment: :blob}, {user: {profile: {avatar_attachment: :blob}}, }, :likes, {comments: [:user, :likes]}).posts_from(User.user_and_friends_ids(current_user))
+    @posts = Post.posts_from(User.user_and_friends_ids(current_user))
   end
 
   def create

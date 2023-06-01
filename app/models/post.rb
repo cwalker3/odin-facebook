@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :likings, as: :likeable, dependent: :destroy
-  has_many :likes, through: :likings, source: :user
+  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :liked_by_user, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
   validate :image_or_body_present
@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   }
 
   def self.posts_from(ids)
-    Post.all.includes(:likes, { user: :profile }, { comments: [:likes, :user] }).where(user_id: ids).order(updated_at: :desc)
+    Post.all.includes(:likes, :liked_by_user, { image_attachment: :blob }, { user: { profile: { avatar_attachment: :blob }}}, { comments: [:user, :likes, :liked_by_user] } ).where(user_id: ids).order(updated_at: :desc)
   end
 
   def posted_at

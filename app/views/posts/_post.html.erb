@@ -24,7 +24,7 @@
   <hr>
   <div class="likes">
     <% unless post.liked_by_user.include?(current_user) %>
-      <%= form_with model: @liking do |form| %>
+      <%= form_with model: @like do |form| %>
         <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.hidden_field :likeable_id, value: post.id %>
         <%= form.hidden_field :likeable_type, value: 'Post'%>
@@ -37,6 +37,6 @@
     <%= render partial: 'comments/comment_form', locals: { comment: @comment, post_id: post.id, } %>
   </div>
   <ul class="comments">
-      <%= render partial: "comments/comment", collection: post.comments, locals: { liking: @liking } %>
+      <%= render partial: "comments/comment", collection: post.comments, locals: { like: @like } %>
   </ul>
 <% end %>

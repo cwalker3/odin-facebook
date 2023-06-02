@@ -96,6 +96,15 @@ header {
             color: #000;
           }
         }
+
+        button {
+          background-color: inherit;
+          cursor: pointer;
+
+          &:hover {
+            color: #000;
+          }
+        }
       }
     }
   }

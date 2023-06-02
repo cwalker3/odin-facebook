@@ -1,8 +1,8 @@
-class LikingsController < ApplicationController
+class LikesController < ApplicationController
   def create
-    @liking = Liking.new(liking_params)
+    @like = Like.new(like_params)
 
-    if @liking.save
+    if @like.save
       redirect_back fallback_location: root_path, notice: 'Liked post'
     else
       redirect_back fallback_location: root_path, notice: 'Failed to like post'
@@ -11,7 +11,7 @@ class LikingsController < ApplicationController
 
   private
 
-  def liking_params
-    params.require(:liking).permit(:user_id, :likeable_id, :likeable_type)
+  def like_params
+    params.require(:like).permit(:user_id, :likeable_id, :likeable_type)
   end
 end

@@ -3,7 +3,7 @@
   <span class="comment-body"><%= comment.body %></span>
   <div class="wrapper">
     <% unless comment.liked_by_user.include?(current_user) %>
-      <%= form_with model: liking do |form| %>
+      <%= form_with model: like do |form| %>
         <%= form.hidden_field :user_id, value: current_user.id %><%= form.hidden_field :likeable_id, value: comment.id %>
         <%= form.hidden_field :likeable_type, value: 'Comment'%>
         <%= form.submit "Like", type: :image, src: image_path('like.svg'), class: 'like-button' %>

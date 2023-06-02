@@ -6,6 +6,9 @@ class Post < ApplicationRecord
 
   validate :image_or_body_present
 
+  scope :from_user_and_friends, ->(user) { where('user_id IN (?)', user.user_and_friends_ids) }
+  default_scope { order(updated_at: :desc) }
+
   has_one_attached :image do |attachable|
     attachable.variant :resized, resize_to_limit: [600, 600]
   end
@@ -16,7 +19,7 @@ class Post < ApplicationRecord
   }
 
   def self.posts_from(ids)
-    Post.all.includes(:likes, :liked_by_user, { image_attachment: :blob }, { user: { profile: { avatar_attachment: :blob }}}, { comments: [:user, :likes, :liked_by_user] } ).where(user_id: ids).order(updated_at: :desc)
+    Post.all.includes(:likes, { image_attachment: :blob }, { user: { profile: { avatar_attachment: :blob }}}, { comments: [:user, :likes] } ).where(user_id: ids).order(updated_at: :desc)
   end
 
   def posted_at

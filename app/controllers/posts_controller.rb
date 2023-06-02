@@ -5,8 +5,8 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @like = Like.new
 
-    # @posts = Post.includes({image_attachment: :blob}, {user: {profile: {avatar_attachment: :blob}}, }, :likes, {comments: [:user, :likes]}).posts_from(User.user_and_friends_ids(current_user))
-    @posts = Post.posts_from(User.user_and_friends_ids(current_user))
+    @posts = Post.from_user_and_friends(current_user)
+                 .includes(:likes, :liked_by_user, { image_attachment: :blob }, { user: { profile: { avatar_attachment: :blob }}}, { comments: [:user, :likes, :liked_by_user] } )
   end
 
   def create

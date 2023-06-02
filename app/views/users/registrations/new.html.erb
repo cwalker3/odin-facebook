@@ -42,11 +42,6 @@
         <%= f.submit "Sign up" %>
       </div>
     <% end %>
-    
-    <div class="omniauth">
-      Sign up with Facebook:
-      <%= button_to image_tag('facebook_logo.png'), user_facebook_omniauth_authorize_path, method: :post, data: { turbo: false } %>
-    </div>
     <%= render "devise/shared/links" %>
   </div>
 </div>

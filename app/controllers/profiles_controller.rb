@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @profiles = Profile.all.includes(:user)
+    @profiles = Profile.all.includes(:user, { avatar_attachment: :blob })
     @requestees = current_user.requestees.to_a
     @friends = current_user.friends
   end

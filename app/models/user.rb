@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:facebook]
+         :confirmable
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -32,8 +32,8 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def self.user_and_friends_ids(user)
-    user.friends.pluck(:id) << user.id
+  def user_and_friends_ids
+    friends.pluck(:id) << id
   end
 
   def after_confirmation

@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for small-forest-1292 on 2023-05-24T08:23:14-07:00
+# fly.toml app configuration file generated for proud-leaf-381 on 2023-06-02T14:30:44-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "small-forest-1292"
+app = "proud-leaf-381"
 primary_region = "lax"
 console_command = "/rails/bin/rails console"
 

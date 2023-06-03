@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @posts = @profile.user.posts
     @comment = Comment.new
-    @liking = Liking.new
+    @like = Like.new
   end
 
   def edit

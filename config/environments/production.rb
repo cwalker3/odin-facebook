@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  config.action_mailer.default_url_options = { :host => 'small-forest-1292.fly.dev' }
+  config.action_mailer.default_url_options = { :host => 'proud-leaf-381.fly.dev' }
 
   config.action_mailer.perform_deliveries = true
 

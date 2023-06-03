@@ -23,14 +23,24 @@ RUN gem update --system --no-document && \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install packages needed to build gems
+# Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev redis
+    apt-get install --no-install-recommends -y build-essential curl libpq-dev libvips node-gyp pkg-config python-is-python3 redis unzip
+
+# Install Node.js
+ARG NODE_VERSION=14.21.3
+RUN curl -fsSL https://fnm.vercel.app/install | bash && \
+    /root/.local/share/fnm/fnm install $NODE_VERSION
+ENV PATH=/root/.local/share/fnm/aliases/default/bin/:$PATH
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle _${BUNDLER_VERSION}_ install && \
     bundle exec bootsnap precompile --gemfile
+
+# Install node modules
+COPY package.json package-lock.json .
+RUN npm install
 
 # Copy application code
 COPY . .
@@ -47,7 +57,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y postgresql-client redis && \
+    apt-get install --no-install-recommends -y imagemagick libglib2.0 libvips libvips postgresql-client redis && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built application from previous stage

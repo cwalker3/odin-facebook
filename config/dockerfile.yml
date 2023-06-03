@@ -21,4 +21,7 @@ options:
   root: false
   swap:
   yjit: false
-  packages: {}
+  packages:
+    deploy:
+    - libglib2.0
+    - libvips
